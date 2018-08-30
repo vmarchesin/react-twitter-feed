@@ -22,12 +22,12 @@ const twitterClient = new Twitter({ ...twitterCredentials })
 
 app.post('/fetch-tweets', async (req, res) => {
   const data = req.body || {}
-  const { count = 50, user_id } = data
+  const { count = 50, screen_name } = data
 
   try {
-    const response = await twitterClient.get('statuses/user_timeline', { 
+    const response = await twitterClient.get('statuses/user_timeline.json', { 
       count,
-      user_id,
+      screen_name,
     })
     
     res.send(response)

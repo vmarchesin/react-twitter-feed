@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 
-const Card = () => (
+const Card = ({
+  tweet = Map(),
+}) => (
   <div>
-      
+      {tweet.get("text")}
   </div>
 )
 

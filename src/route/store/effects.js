@@ -4,14 +4,14 @@ import { fromJS } from 'immutable'
 import { post } from '../../utils/fetch'
 
 export const submitRequest = () => async (dispatch, getState) => {
-  const user_id = selectors.getSearchInput(getState())
+  const screen_name = selectors.getSearchInput(getState())
   dispatch(actions.toggleLoading())
 
   try {
     const response = await post({
       url: '/fetch-tweets', 
       body: { 
-        user_id,
+        screen_name,
       },
     })
 
