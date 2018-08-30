@@ -2,34 +2,44 @@ const dotenv = require('dotenv')
 const express = require('express')
 const path = require('path')
 const Twitter = require('twitter')
+const bodyParser = require('body-parser')
 
 const app = express()
 dotenv.load()
 const PORT = process.env.PORT || 5000
 
 app.use(express.static(path.join(__dirname, '..', 'build/')))
+app.use(bodyParser.json())
 
 const twitterCredentials = {
-    access_token_key: process.env.REACT_APP_TWITTER_ACCESS_TOKEN_KEY,
-    access_token_secret: process.env.REACT_APP_TWITTER_ACCESS_TOKEN_SECRET,
-    consumer_key: process.env.REACT_APP_TWITTER_CONSUMER_KEY,
-    consumer_secret: process.env.REACT_APP_TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.REACT_APP_TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.REACT_APP_TWITTER_ACCESS_TOKEN_SECRET,
+  consumer_key: process.env.REACT_APP_TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.REACT_APP_TWITTER_CONSUMER_SECRET,
 }
 
-const twitterClient = new Twitter({ ...twitterCredentials})
+const twitterClient = new Twitter({ ...twitterCredentials })
 
-app.post('/fetch', (req, res) => {
-    const data = req.body
+app.post('/fetch-tweets', async (req, res) => {
+  const data = req.body || {}
+  const { count = 50, user_id } = data
 
-    twitterClient.get('statuses/user_timeline', { name: 'vemdezapbebe' })
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+  try {
+    const response = await twitterClient.get('statuses/user_timeline', { 
+      count,
+      user_id,
+    })
+    
+    res.send(response)
+  } catch (error) {
+    throw error
+  }
 })
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'))
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'))
 })
 
 app.listen(PORT, () => {
-    console.log(`App running on http://localhost:${PORT}`)
+  console.log(`App running on http://localhost:${PORT}`)
 })
