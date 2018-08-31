@@ -4,3 +4,7 @@ body {
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+#app > .row {
+  margin: 0;
+}

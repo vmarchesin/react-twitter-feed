@@ -1,6 +1,7 @@
 import { Map, List } from 'immutable'
 
 const scaffold = Map({
+  error: null,
   filters: Map({
     sort: Map({
       key: '',
@@ -14,6 +15,8 @@ const scaffold = Map({
 
 export default (state = scaffold, action) => {
   switch (action.type) {
+    case 'SET_ERROR':
+      return state.set('error', action.value)
     case 'TOGGLE_SORT':
       if (state.getIn(['filters', 'sort', 'key']) !== action.key) {
         return state

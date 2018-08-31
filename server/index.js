@@ -25,14 +25,18 @@ app.post('/fetch-tweets', async (req, res) => {
   const { count = 50, screen_name } = data
 
   try {
-    const response = await twitterClient.get('statuses/user_timeline.json', { 
+    const response = await twitterClient.get('statuses/user_timeline.json', {
       count,
       screen_name,
     })
-    
+
     res.send(response)
   } catch (error) {
-    throw error
+    if (Array.isArray(error)) {
+      res.send({ error: error[0] })
+    } else {
+      res.send({ error })
+    }
   }
 })
 

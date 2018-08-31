@@ -5,12 +5,16 @@ import * as actions from '../store/actions'
 import * as effects from '../store/effects'
 
 const mapStateToProps = state => ({
+  error: selectors.getError(state),
   placeholder: "Search for a user handle...",
   value: selectors.getSearchInput(state),
 })
 
 const mapDispatchToProps = dispatch => ({
-  onChange: value => dispatch(actions.updateSearchInput(value)),
+  onChange: value => {
+    dispatch(actions.updateSearchInput(value))
+    dispatch(actions.setError(null))
+  },
   onSubmit: () => dispatch(effects.submitRequest()),
 })
 

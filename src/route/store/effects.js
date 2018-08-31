@@ -7,17 +7,29 @@ export const submitRequest = () => async (dispatch, getState) => {
   const screen_name = selectors.getSearchInput(getState())
   dispatch(actions.toggleLoading())
 
+  if (!screen_name) {
+    return dispatch(actions.setError('EMPTY_VALUE'))
+  }
+
   try {
     const response = await post({
       url: '/fetch-tweets', 
-      body: { 
+      body: {
         screen_name,
       },
     })
 
+    // Ideally this should be done inside the wrapper function. This is just quicker.
+    if (response.error) {
+      throw response.error
+    }
+
     dispatch(actions.updateTweets(fromJS(response)))
   } catch (error) {
-    console.log(error)
+    const noResultsErrorCode = 34
+    if (error.code === noResultsErrorCode) {
+      dispatch(actions.setError('NO_RESULTS'))
+    }
   } finally {
     dispatch(actions.toggleLoading())
   }

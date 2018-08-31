@@ -58,21 +58,23 @@ class Feed extends Component {
   renderCaret = (compareKey, key, order) => {
     if (compareKey !== key) {
       return false
+    } else if (order === 'asc') {
+      return <i className='fas fa-caret-up' style={{ marginRight: 4 }} />
+    } else {
+      return <i className='fas fa-caret-down' style={{ marginRight: 4 }} />
     }
-
-    return order === 'asc' ? <i className='fas fa-caret-up' /> : <i className='fas fa-caret-down' />
   }
 
   render() {
-    const { filters, onSort, tweets } = this.props
-    
+    const { onSort, sort, tweets } = this.props
+
     if (!tweets.size) {
       return false
     }
 
     let sortedTweets = tweets
-    const sortKey = filters.getIn(['sort', 'key'])
-    const sortOrder = filters.getIn(['sort', 'order'])
+    const sortKey = sort.get('key')
+    const sortOrder = sort.get('order')
     if (sortKey) {
       sortedTweets = sortedTweets.sort(this.sortFunction(sortKey, sortOrder))
     }

@@ -1,3 +1,5 @@
+export const getError = state => state.app.get('error')
 export const getFilters = state => state.app.get('filters')
+export const getSort = state => state.app.getIn(['filters', 'sort'])
 export const getSearchInput = state => state.app.get('searchInput')
 export const getTweets = state => state.app.get('tweets')

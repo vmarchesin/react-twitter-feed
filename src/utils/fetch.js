@@ -1,11 +1,11 @@
-export const post = async (request = {}) => {
+export async function post(request = {}) {
   let { body = {}, options = {}, url } = request
 
   try {
-    const response = await fetch(url, { 
-      body: JSON.stringify(body), 
+    const response = await fetch(url, {
+      body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' },
-      method: 'POST', 
+      method: 'POST',
       ...options,
     })
 

@@ -1,3 +1,8 @@
+export const setError = value => ({
+  type: 'SET_ERROR',
+  value,
+})
+
 export const sortBy = key => ({
   key,
   type: 'TOGGLE_SORT',
