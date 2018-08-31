@@ -1,14 +1,18 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
 
-const Button = ({
+const Btn = ({
   onClick,
+  size = 'sm',
   text,
 }) => (
-  <button
+  <Button
+    bsSize={size}
+    bsStyle='primary'
     onClick={onClick}
   >
     {text}
-  </button>
+  </Button>
 )
 
-export default Button
+export default Btn

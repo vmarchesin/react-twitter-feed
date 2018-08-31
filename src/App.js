@@ -1,16 +1,23 @@
 import React, { Component } from 'react'
-import SearchInput from './route/Connects/SearchInput'
-import SubmitButton from './route/Connects/SubmitButton'
+import { Col, Row } from 'react-bootstrap'
+import SearchForm from './route/Connects/SearchForm'
 import Feed from './route/Connects/Feed'
 
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
-        <SearchInput placeholder="Search for a user handle..." />
-        <SubmitButton text="Submit" />
-        <Feed />
-      </React.Fragment>
+      <div>
+        <Row>
+          <Col xs={12} md={4} mdOffset={4}>
+            <SearchForm />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} md={6} mdOffset={3}>
+            <Feed />
+          </Col>
+        </Row>
+      </div>
     )
   }
 }

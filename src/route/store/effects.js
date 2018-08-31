@@ -15,7 +15,6 @@ export const submitRequest = () => async (dispatch, getState) => {
       },
     })
 
-    console.log(response.map(t => t.text))
     dispatch(actions.updateTweets(fromJS(response)))
   } catch (error) {
     console.log(error)
