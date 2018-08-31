@@ -1,6 +1,12 @@
 import { Map, List } from 'immutable'
 
 const scaffold = Map({
+  filters: Map({
+    sort: Map({
+      key: '',
+      order: '',
+    }),
+  }),
   isLoading: false,
   searchInput: '',
   tweets: List(),
@@ -8,6 +14,16 @@ const scaffold = Map({
 
 export default (state = scaffold, action) => {
   switch (action.type) {
+    case 'TOGGLE_SORT':
+      if (state.getIn(['filters', 'sort', 'key']) !== action.key) {
+        return state
+          .setIn(['filters', 'sort', 'key'], action.key)
+          .setIn(['filters', 'sort', 'order'], 'asc')
+      } else {
+        // TODO allow to untoggle sort. The way this works now you can never remove the sort filter
+        return state
+          .updateIn(['filters', 'sort', 'order'], order => order === 'asc' ? 'desc' : 'asc')
+      }
     case 'TOGGLE_LOADING':
       return state.update('isLoading', loading => !loading)
     case 'UPDATE_SEARCH_INPUT':

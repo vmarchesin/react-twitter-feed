@@ -1,3 +1,8 @@
+export const sortBy = key => ({
+  key,
+  type: 'TOGGLE_SORT',
+})
+
 export const toggleLoading = () => ({
   type: 'TOGGLE_LOADING',
 })

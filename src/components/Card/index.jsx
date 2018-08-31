@@ -8,7 +8,11 @@ const StyledCard = styled.div`
   > .user-info, .share-info {
     > div span {
       color: #aab8c2;
-      margin: 4px;
+      margin: 4px 4px 4px 0;
+
+      &.name {
+        color: inherit;
+      }
 
       > i {
         margin-right: 4px;
@@ -27,7 +31,7 @@ const Card = ({
   <StyledCard>
     <Row className='user-info'>
       <Col xs={12}>
-        <span className='name'>{tweet.getIn(['user', 'name'])}</span>
+        <span className='name'><strong>{tweet.getIn(['user', 'name'])}</strong></span>
         <span className='screen-name'>@{tweet.getIn(['user', 'screen_name'])}</span>
       </Col>
     </Row>
@@ -43,6 +47,9 @@ const Card = ({
         </span>
         <span className='favorite-count'>
           <i className='far fa-heart' />{tweet.get('favorite_count')}
+        </span>
+        <span className='created-at' style={{ float: 'right' }}>
+          {tweet.get('created_at').split('+')[0]}
         </span>
       </Col>
     </Row>  
