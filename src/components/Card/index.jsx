@@ -52,7 +52,7 @@ const Card = ({
           {tweet.get('created_at').split('+')[0]}
         </span>
       </Col>
-    </Row>  
+    </Row>
   </StyledCard>
 )
 

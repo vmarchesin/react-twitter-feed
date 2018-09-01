@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import SearchForm from './Connects/SearchForm'
 import Feed from './Connects/Feed'
+import Filters from './Connects/Filters'
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
             <SearchForm />
           </Col>
         </Row>
+        <Filters />
         <Row>
           <Col xs={12} md={6} mdOffset={3}>
             <Feed />

@@ -12,6 +12,12 @@ export const toggleLoading = () => ({
   type: 'TOGGLE_LOADING',
 })
 
+export const updateFilter = (key, value) => ({
+  key,
+  type: 'UPDATE_FILTER',
+  value,
+})
+
 export const updateSearchInput = value => ({
   type: 'UPDATE_SEARCH_INPUT',
   value,

@@ -3,10 +3,18 @@ import { Map, List } from 'immutable'
 const scaffold = Map({
   error: null,
   filters: Map({
+    date: '',
+    favs: '',
+    hashtags: null,
+    hashtagMatch: '',
+    length: null,
+    mentions: null,
+    mentionMatch: '',
     sort: Map({
       key: '',
       order: '',
     }),
+    substring: '',
   }),
   isLoading: false,
   searchInput: '',
@@ -29,6 +37,8 @@ export default (state = scaffold, action) => {
       }
     case 'TOGGLE_LOADING':
       return state.update('isLoading', loading => !loading)
+    case 'UPDATE_FILTER':
+      return state.setIn(['filters', action.key], action.value)
     case 'UPDATE_SEARCH_INPUT':
       return state.set('searchInput', action.value)
     case 'UPDATE_TWEETS':
