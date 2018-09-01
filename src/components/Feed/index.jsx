@@ -26,29 +26,21 @@ const StyledFeed = styled.div`
 `
 
 class Feed extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   sortFunction = (key, order) => {
     switch (key) {
       case 'date':
         return (a, b) => {
-          if (order === 'asc') {
-            a = a.get('created_at')
-            b = b.get('created_at')
-            return (new Date(a).getTime()) - (new Date(b).getTime())
-          } else {
-            return (new Date(b).getTime()) - (new Date(a).getTime())
-          }
+          const compareValue = x => new Date(x.get('created_at')).getTime()
+          a = compareValue(a)
+          b = compareValue(b)
+          return order === 'asc' ? a - b : a + b
         }
       case 'favs':
         return (a, b) => {
-          if (order === 'asc') {
-            return a.get('favorite_count') - b.get('favorite_count')
-          } else {
-            return b.get('favorite_count') - a.get('favorite_count')
-          }
+          const compareValue = x => x.get('favorite_count')
+          a = compareValue(a)
+          b = compareValue(b)
+          return order === 'asc' ? a - b : a + b
         }
       default:
         return (a, b) => a - b
@@ -72,6 +64,7 @@ class Feed extends Component {
       return false
     }
 
+    // Here I decided to keep the sort mechanic tied to the component, since it's easier to deal with.
     let sortedTweets = tweets
     const sortKey = sort.get('key')
     const sortOrder = sort.get('order')

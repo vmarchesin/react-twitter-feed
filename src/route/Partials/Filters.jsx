@@ -13,7 +13,7 @@ class Filters extends Component {
   render() {
     return (
       <Collapse in={this.props.isOpen}>
-        {/* TODO: Improve HelpBlocks text and/or filter names. This text shouldn't be used in an production environment.*/}
+        {/* TODO: Improve HelpBlocks text and/or filter names. Couldn't figure out a better text for each one.*/}
         <Row>
           <Col xs={12} md={4} mdOffset={4}>
             <h4>Filters</h4>
@@ -23,7 +23,7 @@ class Filters extends Component {
 
               <Row>
                 <Col xs={12} md={4}>
-                  {/* TODO: Fix inputs bigger than 280. To do that just have a helper function that changes any number bigger than 280 to 280.*/}
+                  {/* TODO: Fix inputs bigger than 280. To do that just have a helper function that changes any number bigger than 280 to 280. A self controlled input should work as well.*/}
                   <FormGroup>
                     <ControlLabel>Length</ControlLabel>
                     <FormControl

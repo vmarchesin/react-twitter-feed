@@ -29,12 +29,14 @@ class StatisticsModal extends Component {
     // Here I put every mention as a simple string inside an array. Then I reduce the array, mapping each value to an object creating a frequency map, where the key is the user handle and the value is the frequency. At last, I sort this map by number of mentions, in descending order.
     const mentions = tweets.valueSeq().map(tweet => {
       return tweet.getIn(['entities', 'user_mentions']).valueSeq().map(m => m.get('screen_name'))
-    }).reduce((frequencyMap, mentionArr) => {
+    })
+    .reduce((frequencyMap, mentionArr) => {
       mentionArr.forEach(mention => {
         frequencyMap = frequencyMap.set(mention, (frequencyMap.get(mention) || 0 ) + 1)
       })
       return frequencyMap
-    }, Map()).sortBy(frequency => frequency, (a, b) => b - a)
+    }, Map())
+    .sortBy(frequency => frequency, (a, b) => b - a)
 
     return (
       <Modal

@@ -13,8 +13,9 @@ export const submitRequest = () => async (dispatch, getState) => {
 
   try {
     const response = await post({
-      url: '/fetch-tweets', 
+      url: '/fetch-tweets',
       body: {
+        // count: 50, // To fetch more tweets, just pass the value here. The API supports up to 200
         screen_name,
       },
     })

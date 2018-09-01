@@ -30,9 +30,9 @@ class SearchForm extends Component {
   renderErrorFeedback = error => {
     switch (error) {
       case 'EMPTY_VALUE':
-        return <HelpBlock>You need to provide a screen name.</HelpBlock>
+        return <HelpBlock>You need to provide a handle.</HelpBlock>
       case 'NO_RESULTS':
-        return <HelpBlock>No user was found with that screen name.</HelpBlock>
+        return <HelpBlock>No user was found with that handle.</HelpBlock>
       default:
         return false
     }
