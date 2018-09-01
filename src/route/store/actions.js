@@ -12,6 +12,10 @@ export const toggleLoading = () => ({
   type: 'TOGGLE_LOADING',
 })
 
+export const toggleModal = () => ({
+  type: 'TOGGLE_MODAL',
+})
+
 export const updateFilter = (key, value) => ({
   key,
   type: 'UPDATE_FILTER',

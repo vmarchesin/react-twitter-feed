@@ -60,7 +60,7 @@ class SearchForm extends Component {
               onClick={this.props.onSubmit}
               size='md'
               text='Search'
-              type='submit'
+              type='primary'
             />
           </Col>
         </Row>

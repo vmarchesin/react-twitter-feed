@@ -17,6 +17,7 @@ const scaffold = Map({
     substring: '',
   }),
   isLoading: false,
+  modalIsOpen: false,
   searchInput: '',
   tweets: List(),
 })
@@ -25,6 +26,10 @@ export default (state = scaffold, action) => {
   switch (action.type) {
     case 'SET_ERROR':
       return state.set('error', action.value)
+    case 'TOGGLE_LOADING':
+      return state.update('isLoading', loading => !loading)
+    case 'TOGGLE_MODAL':
+      return state.update('modalIsOpen', open => !open)
     case 'TOGGLE_SORT':
       if (state.getIn(['filters', 'sort', 'key']) !== action.key) {
         return state
@@ -35,8 +40,6 @@ export default (state = scaffold, action) => {
         return state
           .updateIn(['filters', 'sort', 'order'], order => order === 'asc' ? 'desc' : 'asc')
       }
-    case 'TOGGLE_LOADING':
-      return state.update('isLoading', loading => !loading)
     case 'UPDATE_FILTER':
       return state.setIn(['filters', action.key], action.value)
     case 'UPDATE_SEARCH_INPUT':
