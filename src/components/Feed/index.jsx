@@ -33,14 +33,14 @@ class Feed extends Component {
           const compareValue = x => new Date(x.get('created_at')).getTime()
           a = compareValue(a)
           b = compareValue(b)
-          return order === 'asc' ? a - b : a + b
+          return order === 'asc' ? a - b : b - a
         }
       case 'favs':
         return (a, b) => {
           const compareValue = x => x.get('favorite_count')
           a = compareValue(a)
           b = compareValue(b)
-          return order === 'asc' ? a - b : a + b
+          return order === 'asc' ? a - b : b - a
         }
       default:
         return (a, b) => a - b

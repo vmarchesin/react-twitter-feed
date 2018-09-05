@@ -34,7 +34,7 @@ export function filterTweets(tweets, filters) {
   }
 
   const _hashtags = Number(filters.get('hashtags'))
-  if (_mentions > 0) {
+  if (_hashtags > 0) {
     tweets = tweets.filter(tweet => {
       const hashtags = tweet.getIn(['entities', 'hashtags']).size
       return hashtags >= _hashtags
